@@ -21,6 +21,8 @@ if (!class_exists('MiRoh_Email', false)) {
         private $_headStyles = array();
         private $_globalKey = 'miRoh_email_headStyles';
 
+        public static $SALT = 'G0uLUxcWeYRFpoYTMVOq';
+
         public function __construct() {
 
             if (!isset($GLOBALS[$this->_globalKey])) {
@@ -58,7 +60,7 @@ if (!class_exists('MiRoh_Email', false)) {
 
         private function _email($email) {
             list($user, $domain) = explode('@', $email);
-            $key = sha1 (strrev($user) . 'aAdress' . strrev($domain));
+            $key = sha1 (strrev($user) . 'aAdress' . strrev($domain) . static::$SALT . rand( 10000, 99999 ) );
 
             $this->_headStyles[] = '.miRoh-email' . $key . ':after {content:\'' . strrev($user) . '\'}';
             $this->_headStyles[] = '.miRoh-email' . $key . ':before {content:\'' . strrev($domain) . '\'}';
