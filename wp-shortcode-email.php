@@ -6,7 +6,7 @@ Plugin URI:  https://github.com/mi-roh/wp-shortcode-email/
 GitHub Plugin URI:  https://github.com/mi-roh/wp-shortcode-email/
 GitHub Branch:     master
 Description: Adds CSS Encryption for E-Mails as ShortCode to Wordpress
-Version:     0.0.1
+Version:     0.0.2
 Author:      Micha Rohde
 Author URI:  https://github.com/mi-roh/
 License:     MIT
