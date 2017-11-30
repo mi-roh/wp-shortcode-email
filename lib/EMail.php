@@ -58,15 +58,20 @@ class EMail {
         return $this->_generateEmail($email);
     }
 
+    protected function _getFooterStyle() {
+        $content = '<style>';
+        $content .= '.miRoh-email {unicode-bidi:bidi-override; direction: rtl;white-space:nowrap;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}';
+        foreach ($this->_styles as $style) {
+            $content .= $style;
+        }
+        $content .= '</style>';
+        return $content;
+    }
+
     public function _footerStyle() {
 
         if (!empty($this->_styles)) {
-            echo '<style>';
-            echo '.miRoh-email {unicode-bidi:bidi-override; direction: rtl;white-space:nowrap;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;-o-user-select: none;user-select: none;}';
-            foreach ($this->_styles as $style) {
-                echo $style;
-            }
-            echo '</style>';
+            echo $this->_getFooterStyle();
         }
     }
 
@@ -80,9 +85,15 @@ class EMail {
         return'<span class="miRoh-email miRoh-email' . $key . '">&#064;</span>';
     }
     
-    public function addEmail( $email ) {
-        return $this->_generateEmail( $email );
-    }
+    public function addEmail( $email, $styles = false ) {
 
+        $content = $this->_generateEmail( $email );
+
+        if ( $styles ) {
+            $content .= $this->_getFooterStyle();
+        }
+
+        return  $content;
+    }
 
 }
